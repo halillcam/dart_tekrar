@@ -1,3 +1,5 @@
+// Bu örnekte constructor ın yapısını anlamaya çalıştım. Constructor içerisinde bir method tanımlamaya ve bunu çalıştırmaya uğraştım.
+
 class ConstructorTekrar{
   // Personellerin isimlerini yaşlarını ve pozisyonlarını tutsun ve bunları ekrana yazdırsın.
 
@@ -6,7 +8,10 @@ class ConstructorTekrar{
 
   ConstructorTekrar({required this.isim,required this.pozisyon,required this.yas,required this.iseGiris}){
     print("Personel ismi : $isim, Pozisyonu : $pozisyon, yasi : $yas");
-     void KacYillikisci(){
+    KacYillikisci();
+    
+  }
+  void KacYillikisci(){
       
       if(iseGiris > 2024){
         print("İse giris 2024 yilindan fazla olamaz");
@@ -17,11 +22,6 @@ class ConstructorTekrar{
 
       }
     }
-    
-    KacYillikisci();
-    
-  }
- 
   
 }
 void main(List<String> args) {
