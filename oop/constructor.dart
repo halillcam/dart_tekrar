@@ -26,4 +26,5 @@ class ConstructorTekrar{
 }
 void main(List<String> args) {
   ConstructorTekrar personel = ConstructorTekrar(isim: "Halil", pozisyon: "IT", yas: 24, iseGiris: 2023);
+  personel;
 }
