@@ -23,7 +23,7 @@ class BMW extends Araba {
 
   @override
   void uretimDetaylari() {
-    print("Model: $model, Kapı Sayısı: $kapiSayisi, Renk: $renk (Stok Renk: $stokRenk)");
+    print("Model: $model, Kapi Sayisi: $kapiSayisi, Renk: $renk (Stok Renk: $stokRenk)");
   }
 }
 
