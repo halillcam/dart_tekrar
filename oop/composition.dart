@@ -1,37 +1,45 @@
-class Klavye{
-  String tip;
+/*
+Composition'un Temeli:
+
+Bir sınıf (örneğin: Filmler), başka sınıfları (örneğin: Kategoriler ve Yönetmenler) içinde bir değişken olarak barındırır.
+Bu sayede, bir sınıfın özelliklerini başka bir sınıfa ekleyebiliriz ve onları bu ana sınıfta kullanabiliriz.
+
+Kategoriler sınıfı ve Yönetmenler sınıfı alt sınıflar olarak duruyor.
+Filmler sınıfı ise bu sınıfları değişken gibi kullanarak birleştiriyor.
+main metodunda Filmler sınıfından oluşturduğun nesne ile diğer iki sınıfın özelliklerine erişebilir.
+*/
+
+
+
+class Kategoriler {
+  String kategori;
   
-  Klavye({required this.tip});
-
-  void yaz() => print("bu bir $tip klavyedir");
+  Kategoriler(this.kategori);
 }
 
-class Fare{
-  String renk;
-
-  Fare({required this.renk});
-
-  void tikla() => print("$renk fare tiklandi");
+class Yonetmenler {
+  String yonetmen;
+  
+  Yonetmenler(this.yonetmen);
 }
 
-class Bilgisayar{
+//composition sınıfı
+class Filmler {
+  Kategoriler kategori;
+  Yonetmenler yonetmen;
 
-  Klavye klavye;
-  Fare fare;
-
-  Bilgisayar({required this. klavye, required this.fare});
-
-  void Calistir(){
-    klavye.yaz();
-    fare.tikla();
-  }
-
+  Filmler({required this.kategori, required this.yonetmen});
 }
 
-void main(List<String> args) {
-  Klavye klavye = Klavye(tip: "Mekanik");
-  Fare fare = Fare(renk: "Siyah");
-  Bilgisayar bilgisayar = Bilgisayar(klavye: klavye, fare: fare);
+void main() {
+  // Kategori ve Yönetmen nesneleri oluştur
+  Kategoriler kategori = Kategoriler("Bilim Kurgu");
+  Yonetmenler yonetmen = Yonetmenler("Christopher Nolan");
 
-  bilgisayar.Calistir();
+  // Filmler sınıfı üzerinden Composition yap
+  Filmler film = Filmler(kategori: kategori, yonetmen: yonetmen);
+
+  // Özellikleri yazdır
+  print("Film Kategorisi: ${film.kategori.kategori}");
+  print("Film Yönetmeni: ${film.yonetmen.yonetmen}");
 }
