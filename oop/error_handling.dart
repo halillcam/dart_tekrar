@@ -11,4 +11,7 @@ void main() {
   } catch (e) {
     print("Bir hata oluştu: $e");
   }
+  finally{
+    print("Ben her türlü çalisirim aga");
+  }
 }
