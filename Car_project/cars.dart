@@ -1,7 +1,5 @@
 class Arabalar {
-  String marka;
-  String hp;
-  String koltukSayisi;
+  String marka, hp, koltukSayisi;
   bool sportMode;
 
   Arabalar({
@@ -15,45 +13,61 @@ class Arabalar {
 class ArabaYonetimi {
   Map<String, Arabalar> aracDetaylari = {};
 
-  void aracEkle(String anahtar, String marka, String hp, String koltukSayisi, bool sportMode) {
-    // Yeni bir araç nesnesi oluştur ve Map'e ekle
+  // Yeni araç ekleme
+  void aracEkle(
+    String anahtar,
+    String marka,
+    String hp,
+    String koltukSayisi,
+    bool sportMode,
+  ) {
     aracDetaylari[anahtar] = Arabalar(
       marka: marka,
       hp: hp,
       koltukSayisi: koltukSayisi,
       sportMode: sportMode,
     );
-    // Eklenen aracı göster
-    print("Yeni araç eklendi: Marka: ${aracDetaylari[anahtar]!.marka}, HP: ${aracDetaylari[anahtar]!.hp}, "
-        "Koltuk Sayısı: ${aracDetaylari[anahtar]!.koltukSayisi}, Sport Mode: ${aracDetaylari[anahtar]!.sportMode}");
+    print("Yeni araç eklendi: Marka: ${aracDetaylari[anahtar]!.marka}");
   }
 
-  void mevcutAraclariGoster() {
-    if (aracDetaylari.isEmpty) {
-      print("Henüz eklenmiş bir araç yok.");
-      return;
+  // Aracı silme
+  void aracSil(String anahtar) {
+    if (aracDetaylari.containsKey(anahtar)) {
+      var silinenArac = aracDetaylari.remove(anahtar);
+      print("Silinen araç: Marka: ${silinenArac?.marka}");
+    } else {
+      print("Hata: $anahtar böyle bir araç bulunamadi.");
     }
-    print("Mevcut araçlar:");
-    aracDetaylari.forEach((key, value) {
-      print("Marka: ${value.marka}, HP: ${value.hp}, Koltuk Sayısı: ${value.koltukSayisi}, Sport Mode: ${value.sportMode}");
-    });
+    return araclariListele();
+  }
+
+  // Tüm araçları listeleme
+  void araclariListele() {
+    if (aracDetaylari.isEmpty) {
+      print("Listede hiç araç yok.");
+    } else {
+      print("Mevcut araçlar:");
+      aracDetaylari.forEach((anahtar, araba) {
+        print("Marka: ${araba.marka}, HP: ${araba.hp}, Koltuk Sayisi : ${araba.koltukSayisi}, Sport mode : ${araba.sportMode}");
+      });
+    }
   }
 }
 
 void main() {
-  var arabaYonetimi = ArabaYonetimi();
+  ArabaYonetimi arabaYonetimi = ArabaYonetimi();
 
-  // Yeni araç ekleme
+  // Araç ekleme
+  
   arabaYonetimi.aracEkle("BMW", "BMW", "150", "4", true);
-  arabaYonetimi.aracEkle("Toyota", "Toyota", "110", "4", false);
+  arabaYonetimi.aracEkle("Toyota", "Toyota", "110", "5", false);
 
-  // Mevcut araçları gösterme
- // arabaYonetimi.mevcutAraclariGoster();
+  // Tüm araçları listeleme
+  arabaYonetimi.araclariListele();
 
-  // Yeni bir araç daha ekleyelim
-  arabaYonetimi.aracEkle("Audi", "Audi", "180", "2", true);
+  // Araç silme
+  arabaYonetimi.aracSil("dsafds");
 
-  // Güncellenmiş araç listesi
-  arabaYonetimi.mevcutAraclariGoster();
-
+  // Araçları tekrar listeleme
+ // arabaYonetimi.araclariListele();
 }
