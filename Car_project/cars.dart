@@ -1,57 +1,59 @@
+class Arabalar {
+  String marka;
+  String hp;
+  String koltukSayisi;
+  bool sportMode;
 
-class Cars {
+  Arabalar({
+    required this.marka,
+    required this.hp,
+    required this.koltukSayisi,
+    required this.sportMode,
+  });
+}
 
-int hp = 0,KoltukSayisi = 0;
-bool SportMode = false;
+class ArabaYonetimi {
+  Map<String, Arabalar> aracDetaylari = {};
 
-List <String> car = ["Bwm","Toyota","Wolkswagen",];
-
-void Araclarim(){
-  for(int i =0; i<car.length; i++){
-    print("${i+1} . ${car[i]}");
+  void aracEkle(String anahtar, String marka, String hp, String koltukSayisi, bool sportMode) {
+    // Yeni bir araç nesnesi oluştur ve Map'e ekle
+    aracDetaylari[anahtar] = Arabalar(
+      marka: marka,
+      hp: hp,
+      koltukSayisi: koltukSayisi,
+      sportMode: sportMode,
+    );
+    // Eklenen aracı göster
+    print("Yeni araç eklendi: Marka: ${aracDetaylari[anahtar]!.marka}, HP: ${aracDetaylari[anahtar]!.hp}, "
+        "Koltuk Sayısı: ${aracDetaylari[anahtar]!.koltukSayisi}, Sport Mode: ${aracDetaylari[anahtar]!.sportMode}");
   }
 
-}
-
-void arabaEkle(String ekle){
-    car.add(ekle);
-    print("Eklenen arac : ${car.last}");
-    print("Listedeki toplam eleman Sayisi : ${car.length}");
-}
-
-
-void arabaSecim(int secim){
-    switch (secim){
-        case 0 :
-            print("Secilen arac = ${car[0]}, Hp : ${hp = 150}, Koltuk sayisi:${KoltukSayisi = 2} , Sport mode ${SportMode = true}: var ");
-            
-            break;
-        
-        case 1 :
-              print("Secilen arac = ${car[1]}, Hp : ${hp = 110}, Koltuk sayisi:${KoltukSayisi = 4} , Sport mode ${SportMode = false}: yok ");
-            break;
-        
-        case 2 : 
-             print("Secilen arac = ${car[2]}, Hp : ${hp = 120}, Koltuk sayisi:${KoltukSayisi = 4} , Sport mode ${SportMode = false}: yok ");
-            break;
+  void mevcutAraclariGoster() {
+    if (aracDetaylari.isEmpty) {
+      print("Henüz eklenmiş bir araç yok.");
+      return;
     }
+    print("Mevcut araçlar:");
+    aracDetaylari.forEach((key, value) {
+      print("Marka: ${value.marka}, HP: ${value.hp}, Koltuk Sayısı: ${value.koltukSayisi}, Sport Mode: ${value.sportMode}");
+    });
+  }
 }
 
-}
+void main() {
+  var arabaYonetimi = ArabaYonetimi();
 
-void main(List<String> args) {
-    Cars arabam = Cars();
-    //bmw
-   /* arabam.arabaSecim(0);
+  // Yeni araç ekleme
+  arabaYonetimi.aracEkle("BMW", "BMW", "150", "4", true);
+  arabaYonetimi.aracEkle("Toyota", "Toyota", "110", "4", false);
 
-    //Toyota
-    arabam.arabaSecim(1);
+  // Mevcut araçları gösterme
+ // arabaYonetimi.mevcutAraclariGoster();
 
-    //Wolkswagen
+  // Yeni bir araç daha ekleyelim
+  arabaYonetimi.aracEkle("Audi", "Audi", "180", "2", true);
 
-    arabam.arabaSecim(2);*/
+  // Güncellenmiş araç listesi
+  arabaYonetimi.mevcutAraclariGoster();
 
-    arabam.arabaEkle("Suzuki");
-    arabam.Araclarim();
-    
 }
