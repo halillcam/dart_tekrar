@@ -83,7 +83,7 @@ void main() {
   arabaYonetimi.araclariListele();
 
   // Araç silme
-  arabaYonetimi.aracSil("dsafds");
+  //arabaYonetimi.aracSil("BMW");
 
   // Araçları tekrar listeleme
  // arabaYonetimi.araclariListele();
