@@ -15,30 +15,47 @@ class ArabaYonetimi {
 
   // Yeni araç ekleme
   void aracEkle(
-    String anahtar,
     String marka,
+    String model,
     String hp,
     String koltukSayisi,
     bool sportMode,
   ) {
-    aracDetaylari[anahtar] = Arabalar(
+    aracDetaylari[marka] = Arabalar(
       marka: marka,
       hp: hp,
       koltukSayisi: koltukSayisi,
       sportMode: sportMode,
     );
-    print("Yeni araç eklendi: Marka: ${aracDetaylari[anahtar]!.marka}");
+    print("Yeni araç eklendi: Marka: ${aracDetaylari[marka]!.marka}");
   }
 
   // Aracı silme
-  void aracSil(String anahtar) {
-    if (aracDetaylari.containsKey(anahtar)) {
-      var silinenArac = aracDetaylari.remove(anahtar);
+  void aracSil(String marka) {
+    if (aracDetaylari.containsKey(marka)) {
+      var silinenArac = aracDetaylari.remove(marka);
       print("Silinen araç: Marka: ${silinenArac?.marka}");
     } else {
-      print("Hata: $anahtar böyle bir araç bulunamadi.");
+      print("Hata: $marka böyle bir araç bulunamadi.");
     }
     return araclariListele();
+  }
+
+  void AracGuncelle(String marka,String yeniMarka,String yeniHp,String yeniKoltukSayisi,bool yeniSportMode){
+
+    if(aracDetaylari.containsKey(marka)){
+      aracDetaylari[marka] = Arabalar(
+        marka: yeniMarka,
+        hp: yeniHp,
+        koltukSayisi: yeniKoltukSayisi,
+        sportMode:yeniSportMode);
+
+        print("Arac Guncellendi : Marka : ${aracDetaylari[marka]!.marka}," );
+
+    }else{
+      print("Boyle bir Arac Bulunamadi");
+    }
+    
   }
 
   // Tüm araçları listeleme
@@ -47,7 +64,7 @@ class ArabaYonetimi {
       print("Listede hiç araç yok.");
     } else {
       print("Mevcut araçlar:");
-      aracDetaylari.forEach((anahtar, araba) {
+      aracDetaylari.forEach((marka, araba) {
         print("Marka: ${araba.marka}, HP: ${araba.hp}, Koltuk Sayisi : ${araba.koltukSayisi}, Sport mode : ${araba.sportMode}");
       });
     }
@@ -59,7 +76,7 @@ void main() {
 
   // Araç ekleme
   
-  arabaYonetimi.aracEkle("BMW", "BMW", "150", "4", true);
+  arabaYonetimi.aracEkle("BMW", "BMW M5", "150", "4", true);
   arabaYonetimi.aracEkle("Toyota", "Toyota", "110", "5", false);
 
   // Tüm araçları listeleme
@@ -70,4 +87,9 @@ void main() {
 
   // Araçları tekrar listeleme
  // arabaYonetimi.araclariListele();
+
+ // Araç güncelleme
+ arabaYonetimi.AracGuncelle("BMW", "BMW M5", "200", "4", true);
+ arabaYonetimi.araclariListele();
+
 }
