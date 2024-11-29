@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import '../oop/interface.dart';
+
 class Arabalar {
   String marka, hp, koltukSayisi;
   bool sportMode;
@@ -105,9 +107,8 @@ void main() {
   while(true){
     print("\n---- Araba Satiş Menüsü ----");
     print("1. Araçlari Listele");
-    print("2. Araç Fiyatini Göster");
-    print("3. Araç Satin Al");
-    print("4. Çikiş");
+    print("2. Araci Satin al");
+    print("4. Cikis yap");
 
     print("Seçiminizi yapiniz: ");
     String? secim = stdin.readLineSync();
@@ -116,10 +117,32 @@ void main() {
       case "1":
       arabaYonetimi.araclariListele();
       break;
+      
+      case "2":
+      print("Satin almak istediğiniz Aracin Markasini yaziniz :");
+      String? markaGir = stdin.readLineSync();
+      if(markaGir != null && arabaYonetimi.aracDetaylari.containsKey(markaGir)){
+        print("Hayirli Olsun");
+
+        arabaYonetimi.aracSil(markaGir);
+        break;
+      }else{
+        print("Yanlis Arac Secimi");
+      }
+      break;
 
       case "4":
+      print("Cikis yapiliyorr");
       return;
+
+      default:
+      print("Gecersiz Secim");
+      return;
+    
     }
+  
+
+    
 
 
   }
