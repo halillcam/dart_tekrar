@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import '../oop/interface.dart';
+
 class Arabalar {
   String marka, hp, koltukSayisi;
   bool sportMode;
-
+  
   Arabalar({
     required this.marka,
     required this.hp,
@@ -40,7 +44,7 @@ class ArabaYonetimi {
     }
     return araclariListele();
   }
-
+  // araclari guncelle
   void AracGuncelle(String marka,String yeniMarka,String yeniHp,String yeniKoltukSayisi,bool yeniSportMode){
 
     if(aracDetaylari.containsKey(marka)){
@@ -74,7 +78,7 @@ class ArabaYonetimi {
 void main() {
   ArabaYonetimi arabaYonetimi = ArabaYonetimi();
 
-  // Araç ekleme
+   // Araç ekleme
   
   arabaYonetimi.aracEkle("BMW", "BMW M5", "150", "4", true);
   arabaYonetimi.aracEkle("Toyota", "Toyota", "110", "5", false);
@@ -91,5 +95,30 @@ void main() {
  // Araç güncelleme
  arabaYonetimi.AracGuncelle("BMW", "BMW M5", "200", "4", true);
  arabaYonetimi.araclariListele();
+
+
+
+
+  while(true){
+    print("\n---- Araba Satiş Menüsü ----");
+    print("1. Araçlari Listele");
+    print("2. Araç Fiyatini Göster");
+    print("3. Araç Satin Al");
+    print("4. Çikiş");
+
+    print("Seçiminizi yapiniz: ");
+    String? secim = stdin.readLineSync();
+
+    switch(secim){
+      case "1":
+      arabaYonetimi.araclariListele();
+      break;
+
+      case "4":
+      return;
+    }
+
+
+  }
 
 }
