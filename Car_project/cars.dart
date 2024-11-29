@@ -1,16 +1,16 @@
 import 'dart:io';
 
-import '../oop/interface.dart';
-
 class Arabalar {
   String marka, hp, koltukSayisi;
   bool sportMode;
+  double fiyat;
   
   Arabalar({
     required this.marka,
     required this.hp,
     required this.koltukSayisi,
     required this.sportMode,
+    required this.fiyat,
   });
 }
 
@@ -24,12 +24,14 @@ class ArabaYonetimi {
     String hp,
     String koltukSayisi,
     bool sportMode,
+    double fiyat,
   ) {
     aracDetaylari[marka] = Arabalar(
       marka: marka,
       hp: hp,
       koltukSayisi: koltukSayisi,
       sportMode: sportMode,
+      fiyat: fiyat
     );
     print("Yeni araç eklendi: Marka: ${aracDetaylari[marka]!.marka}");
   }
@@ -45,14 +47,15 @@ class ArabaYonetimi {
     return araclariListele();
   }
   // araclari guncelle
-  void AracGuncelle(String marka,String yeniMarka,String yeniHp,String yeniKoltukSayisi,bool yeniSportMode){
+  void AracGuncelle(String marka,String yeniMarka,String yeniHp,String yeniKoltukSayisi,bool yeniSportMode, double yeniFiyat){
 
     if(aracDetaylari.containsKey(marka)){
       aracDetaylari[marka] = Arabalar(
         marka: yeniMarka,
         hp: yeniHp,
         koltukSayisi: yeniKoltukSayisi,
-        sportMode:yeniSportMode);
+        sportMode:yeniSportMode,
+        fiyat: yeniFiyat,);
 
         print("Arac Guncellendi : Marka : ${aracDetaylari[marka]!.marka}," );
 
@@ -80,8 +83,8 @@ void main() {
 
    // Araç ekleme
   
-  arabaYonetimi.aracEkle("BMW", "BMW M5", "150", "4", true);
-  arabaYonetimi.aracEkle("Toyota", "Toyota", "110", "5", false);
+  arabaYonetimi.aracEkle("BMW", "BMW M5", "150", "4", true,1350000);
+  arabaYonetimi.aracEkle("Toyota", "Toyota", "110", "5", false,100000);
 
   // Tüm araçları listeleme
   arabaYonetimi.araclariListele();
@@ -93,7 +96,7 @@ void main() {
  // arabaYonetimi.araclariListele();
 
  // Araç güncelleme
- arabaYonetimi.AracGuncelle("BMW", "BMW M5", "200", "4", true);
+ arabaYonetimi.AracGuncelle("BMW", "BMW M5", "200", "4", true,1400000);
  arabaYonetimi.araclariListele();
 
 
