@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import '../oop/interface.dart';
 
 class Arabalar {
   String marka, hp, koltukSayisi;
