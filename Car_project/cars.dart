@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import '../oop/interface.dart';
+
 
 class Arabalar {
   String marka, hp, koltukSayisi;
@@ -107,7 +109,7 @@ void main() {
     print("\n---- Araba Satiş Menüsü ----");
     print("1. Araçlari Listele");
     print("2. Araci Satin al");
-    print("4. Cikis yap");
+    print("3. Cikis yap");
 
     print("Seçiminizi yapiniz: ");
     String? secim = stdin.readLineSync();
@@ -130,7 +132,7 @@ void main() {
       }
       break;
 
-      case "4":
+      case "3":
       print("Cikis yapiliyorr");
       return;
 
